@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "272478901688",
+    "firebase_url": "https://majhamc-default-rtdb.firebaseio.com",
+    "project_id": "majhamc",
+    "storage_bucket": "majhamc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272478901688:android:1356e8074c33819226ab4d",
+        "android_client_info": {
+          "package_name": "com.dbmsA88A63.mmc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272478901688-0qv6196kja7td18t8f7s0f7p6jh9087c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dbmsA88A63.mmc",
+            "certificate_hash": "576c2b9e5b5eefa84971fdaa3d4c16aff814caed"
+          }
+        },
+        {
+          "client_id": "272478901688-vodvf2qih3aluqld1fedik3vklqutjmb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj5G08QiQ0ora5W-wo9Ce7uLDMG4aZa9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272478901688-vodvf2qih3aluqld1fedik3vklqutjmb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
