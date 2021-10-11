@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mmc/screens/showDiscrepancies.dart';
 
 // ignore: must_be_immutable
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class UserDetails extends StatelessWidget {
+  UserDetails({Key? key}) : super(key: key);
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   var name = "";
   var userId = "";
   var aadharId = "";
 
-  @override
+ 
   final FirebaseFirestore fbfs = FirebaseFirestore.instance;
-
+ @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: fbfs.collection('userDetails').snapshots(),
@@ -68,6 +69,10 @@ class HomeScreen extends StatelessWidget {
                       'userId':
                           FirebaseAuth.instance.currentUser!.uid.toString(),
                     });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Discrepancies()));
                   },
                   child: const Text("submit"),
                 ),

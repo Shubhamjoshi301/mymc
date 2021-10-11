@@ -1,15 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mmc/screens/choose_user.dart';
 import 'package:mmc/screens/otp_screen.dart';
+import 'package:mmc/screens/showDiscrepancies.dart';
 
-class AuthScreenNormal extends StatefulWidget {
-  const AuthScreenNormal({Key? key}) : super(key: key);
+class AuthScreenNmc extends StatefulWidget {
+  const AuthScreenNmc({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _AuthScreenNormalState createState() => _AuthScreenNormalState();
+  _AuthScreenNmcState createState() => _AuthScreenNmcState();
 }
 
-class _AuthScreenNormalState extends State<AuthScreenNormal> {
-  final TextEditingController _phoneNoController = TextEditingController();
+class _AuthScreenNmcState extends State<AuthScreenNmc> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore fbfs = FirebaseFirestore.instance;
+  Future signIn({String? email, String? password}) async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+          email: email as String, password: password as String);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +50,7 @@ class _AuthScreenNormalState extends State<AuthScreenNormal> {
                         width: 10,
                       ),
                       Text(
-                        'Login',
+                        'NMC Login',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -49,12 +67,11 @@ class _AuthScreenNormalState extends State<AuthScreenNormal> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     height: 60,
-                    
                     child: TextField(
                       textInputAction: TextInputAction.done,
                       key: UniqueKey(),
-                      controller: _phoneNoController,
-                      keyboardType: TextInputType.phone,
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
                       style: const TextStyle(
                         // fontFamily: "Nunito",
                         fontSize: 16,
@@ -62,11 +79,10 @@ class _AuthScreenNormalState extends State<AuthScreenNormal> {
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: "Phone number",
+                        labelText: "Email",
                         prefixStyle: TextStyle(
                           color: Colors.white.withOpacity(0.65),
                         ),
-                        prefixText: "+91",
                         filled: true,
                         fillColor: Colors.transparent,
                         labelStyle: const TextStyle(
@@ -80,18 +96,61 @@ class _AuthScreenNormalState extends State<AuthScreenNormal> {
                   const SizedBox(
                     height: 70,
                   ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xff262626),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    height: 60,
+                    child: TextField(
+                      textInputAction: TextInputAction.done,
+                      key: UniqueKey(),
+                      controller: _passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      style: const TextStyle(
+                        // fontFamily: "Nunito",
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: "Password",
+                        prefixStyle: TextStyle(
+                          color: Colors.white.withOpacity(0.65),
+                        ),
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        labelStyle: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                      cursorColor: Colors.white,
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => OtpScreen(
-                                phoneNo: int.parse(_phoneNoController.text),
-                              ),
-                            ),
-                          );
+                          signIn(
+                                  email: _emailController.text,
+                                  password: _passwordController.text)
+                              .then((value) {
+                            if (value == null) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Discrepancies()));
+                            } else {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ChooseUser()));
+                            }
+                          });
                         },
                         child: Container(
                           height: 50,
@@ -103,7 +162,8 @@ class _AuthScreenNormalState extends State<AuthScreenNormal> {
                               BoxShadow(
                                 offset: const Offset(0, 3),
                                 blurRadius: 6,
-                                color: const Color(0xff000000).withOpacity(0.16),
+                                color:
+                                    const Color(0xff000000).withOpacity(0.16),
                               ),
                             ],
                           ),
@@ -116,7 +176,7 @@ class _AuthScreenNormalState extends State<AuthScreenNormal> {
                       ),
                     ],
                   ),
-                  
+
                   const Expanded(
                     flex: 1,
                     child: SizedBox(),

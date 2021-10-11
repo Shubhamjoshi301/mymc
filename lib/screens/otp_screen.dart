@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mmc/screens/showDiscrepancies.dart';
 // import 'package:gdsc/services/toast_service.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
@@ -19,22 +20,20 @@ class _OtpScreenState extends State<OtpScreen> {
     FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: "+91${widget.phoneNo}",
       verificationCompleted: (PhoneAuthCredential credential) async {
-        // ANDROID ONLY!
-
-        // Sign the user in (or link) with the auto-generated credential
         await FirebaseAuth.instance.signInWithCredential(credential).then(
           (value) {
             if (value.user != null) {
-              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Discrepancies()));
               // showTextToast("Login Successful!");
             }
           },
         );
       },
       verificationFailed: (FirebaseAuthException e) {
-        if (e.code == 'invalid-phone-number') {
-     
-        }
+        if (e.code == 'invalid-phone-number') {}
         // Handle other errors
       },
       codeSent: (String verificationId, int? resendToken) async {
@@ -78,8 +77,8 @@ class _OtpScreenState extends State<OtpScreen> {
                   ],
                 ),
                 const SizedBox(
-                      height: 20,
-                    ),
+                  height: 20,
+                ),
                 OTPTextField(
                   fieldStyle: FieldStyle.box,
                   otpFieldStyle: OtpFieldStyle(
