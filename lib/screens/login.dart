@@ -85,7 +85,7 @@ class _AuthScreenNormalState extends State<AuthScreenNormal> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
+                          Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (context) => OtpScreen(
                                 phoneNo: int.parse(_phoneNoController.text),

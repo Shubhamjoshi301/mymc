@@ -107,6 +107,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         .then(
                       (value) {
                         if (value.user != null) {
+                          
                           Navigator.of(context).pop();
                           // showTextToast("Login Successful!");
                         }

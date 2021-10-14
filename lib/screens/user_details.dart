@@ -4,15 +4,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mmc/screens/showDiscrepancies.dart';
 
 // ignore: must_be_immutable
-class UserDetails extends StatelessWidget {
+class UserDetails extends StatefulWidget {
   UserDetails({Key? key}) : super(key: key);
+
+  @override
+  State<UserDetails> createState() => _UserDetailsState();
+}
+
+class _UserDetailsState extends State<UserDetails> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   var name = "";
+
   var userId = "";
+
   var aadharId = "";
 
- 
   final FirebaseFirestore fbfs = FirebaseFirestore.instance;
+
  @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
