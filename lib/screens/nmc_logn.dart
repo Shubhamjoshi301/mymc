@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mmc/screens/choose_user.dart';
-import 'package:mmc/screens/otp_screen.dart';
 import 'package:mmc/screens/showDiscrepancies.dart';
 
 class AuthScreenNmc extends StatefulWidget {

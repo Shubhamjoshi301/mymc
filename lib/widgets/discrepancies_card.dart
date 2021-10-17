@@ -39,8 +39,8 @@ class _DiscrepanciesCardState extends State<DiscrepanciesCard> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("Delete?"),
-                content: Text("Are you sure ?"),
+                title: const Text("Delete?"),
+                content: const Text("Are you sure ?"),
                 actions: [
                   TextButton.icon(
                     onPressed: () {

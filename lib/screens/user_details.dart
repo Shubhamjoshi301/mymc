@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mmc/screens/showDiscrepancies.dart';
 
-// ignore: must_be_immutable
 class UserDetails extends StatefulWidget {
-  UserDetails({Key? key}) : super(key: key);
+  const UserDetails({Key? key}) : super(key: key);
 
   @override
   State<UserDetails> createState() => _UserDetailsState();

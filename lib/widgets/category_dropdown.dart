@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CategoryDropdown extends StatefulWidget {
   String category = "Category";
 
@@ -38,7 +39,7 @@ class _CategoryDropdownState extends State<CategoryDropdown> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.0),
+                  padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
                     category1,
                     textAlign: TextAlign.center,
@@ -55,10 +56,52 @@ class _CategoryDropdownState extends State<CategoryDropdown> {
             ),
             if (_isExpanded)
               FutureBuilder(
-                  future: Future.delayed(const Duration(milliseconds: 100)),
+                  future: Future.delayed(const Duration(milliseconds: 500)),
                   builder: (c, s) => s.connectionState == ConnectionState.done
                       ? Column(
                           children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  widget.category = "Civic Cleanliness";
+                                  category1 = widget.category;
+                                  _isExpanded = !_isExpanded;
+                                });
+                              },
+                              child: Row(
+                                children: const [
+                                  Text("Civic Cleanliness"),
+                                ],
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  widget.category = "Electrical Equipments";
+                                  category1 = widget.category;
+                                  _isExpanded = !_isExpanded;
+                                });
+                              },
+                              child: Row(
+                                children: const [
+                                  Text("Electrical Equipments"),
+                                ],
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  widget.category = "Transport";
+                                  category1 = widget.category;
+                                  _isExpanded = !_isExpanded;
+                                });
+                              },
+                              child: Row(
+                                children: const [
+                                  Text("Transport"),
+                                ],
+                              ),
+                            ),
                             ElevatedButton(
                               onPressed: () {
                                 setState(() {

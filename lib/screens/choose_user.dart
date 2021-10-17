@@ -12,6 +12,7 @@ class ChooseUser extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Center(
           child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           ElevatedButton(
             onPressed: () {

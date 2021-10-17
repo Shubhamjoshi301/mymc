@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mmc/screens/choose_user.dart';
 import 'package:mmc/screens/error_screen.dart';
-import 'package:mmc/screens/login.dart';
 import 'package:mmc/screens/user_details.dart';
 import 'package:mmc/screens/showDiscrepancies.dart';
 
@@ -67,7 +66,7 @@ class AuthHandler extends StatelessWidget {
                
                 if (snapshot2.hasData && snapshot2.data!.docs.isEmpty) {
                   
-                  return UserDetails();
+                  return const UserDetails();
                 }
                 else{
                   return const  Discrepancies();
